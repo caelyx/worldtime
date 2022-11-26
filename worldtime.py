@@ -2,10 +2,18 @@
 """worldtime.py -- show the current time in different cities. 
 
 Highlights Western business hours in green.
-See config.py for settings."""
+See config.py for settings.
+
+Requires Python 3.9 or the backports.zoneinfo library:
+    `pip3 install backports.zoneinfo`
+"""
 
 from datetime import datetime
-from zoneinfo import ZoneInfo
+try: 
+    from zoneinfo import ZoneInfo
+except ModuleNotFoundError:
+    from backports.zoneinfo import ZoneInfo
+
 
 from config import cities, itemsPerRow, dayStartHour, dayEndHour, workWeek, display24H
 
