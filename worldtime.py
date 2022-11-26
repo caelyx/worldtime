@@ -40,12 +40,13 @@ def main():
             timestr = timeval.strftime("%I ") + timeval.strftime("%p ").lower() + timeval.strftime("%a")
 
         # Check if it's working hours there
-        if timeval.weekday() in workWeek and (
-            timeval.hour >= dayStartHour and timeval.hour < dayEndHour
-        ):
-            timecolor = colors["Green"]
+        if timeval.hour >= dayStartHour and timeval.hour < dayEndHour:
+            if timeval.weekday() in workWeek:
+                timecolor = colors["Green"] # Daytime and work week
+            else:
+                timecolor = colors["Blue"] # Daytime and weekend
         else:
-            timecolor = colors["Black"]
+            timecolor = colors["Black"] # Night
 
         print(f"{timecolor}{name} {timestr}" + colors["reset"])
 
